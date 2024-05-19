@@ -1,0 +1,134 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Название веб-страницы</title>
+    </head>
+    <body>
+        <div class="btn-main-container"><button class="btn btn-main">ДАТЬ ДЖАЗУ</button></div>
+        <div class="container"></div>
+        
+    </body>
+<style>
+.card{
+   margin: 100px;
+   width: 200px; 
+   
+   border: 1px solid black;
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+.info{
+    padding: 10px;
+}
+.highlighted{
+    border: 5px solid black;
+}
+.btns{
+    border:1px solid black;
+    visibility: hidden;
+}
+button{
+    width:100%;
+    border: none;
+}
+.vis{
+    visibility: visible;
+}
+.btn-main-container{
+   
+    
+}
+.btn-main{
+    width: 300px;
+    font-weight: bold;
+    font-size: 34px;
+    padding: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+    box-shadow: 0 5px 15px 0 rgb(104, 98, 98);
+    transition: 0.5s;
+}
+
+
+
+.btn-main:hover {
+  transform: translate(0,-3px);
+  box-shadow: 0 20px 40px 0 rgb(255, 11, 11);
+}
+
+.container{
+    display: flex;
+    align-items: center;
+}
+</style>
+<script>
+let mainbtn = document.body.querySelector('.btn-main')
+mainbtn.addEventListener('click', mainBtnClick)
+
+
+
+
+function delFunction(event){
+    let card = event.currentTarget.parentNode;
+    card.remove()
+}
+function clickFunk(event){
+   
+    let b = event.currentTarget.lastElementChild;
+    console.log(b.lenght);
+    b.classList.toggle('vis');
+    event.currentTarget.classList.toggle('highlighted');
+
+    
+
+    
+}
+
+function mainBtnClick(){
+    photo_list = ["nasyt.jpg","shok.jpg","futer.jpg" ]
+    messeage_list = ["Анастасия Волочкова рассказла что на самом деле на завтрак она ест как...", "Ученые были в шоке когда обнорожили ...", "Ванга предсказала в 2024 году Россию ждет ..."]
+    for (let i = 0; i<3; i++){
+        let card = document.createElement('div');
+        card.className = 'card';
+
+        let photo_box = document.createElement('div');
+        photo_box.className = 'photo';
+
+        let photo = document.createElement('img');
+        photo.setAttribute("src",photo_list[i]);
+
+        photo_box.appendChild(photo);
+        card.appendChild(photo_box);
+
+
+        let info = document.createElement('div');
+        info.className = 'info';
+        info.innerText = messeage_list[i];
+        card.appendChild(info);
+
+        let btnc = document.createElement('div');
+        btnc.className = "btns";
+        btnc.appendChild(document.createElement('button'));
+        btnc.firstChild.innerText = 'Удаляем';
+        btnc.addEventListener('click', delFunction)
+        card.appendChild(btnc);
+        card.addEventListener('click', clickFunk);
+
+        let container = document.body.querySelector('.container')
+        container.appendChild(card);
+
+
+    }
+
+}
+
+
+
+
+
+
+</script>
+</html>
